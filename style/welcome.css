@@ -1,0 +1,10 @@
+.menu-card{
+    height: 90%;
+    text-align: center;
+}
+
+.welcome{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

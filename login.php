@@ -126,6 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <label class="h6">Password</label>
                 <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                Don't have an Account? <a href="register.php">Sign Up</a>
             </div>
  
             <div class="d-grid ">
