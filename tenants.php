@@ -66,7 +66,7 @@
                                         echo "<td>" . $row['occupation'] . "</td>";
                                         echo "<td>" . $row['rate'] . "</td>";
                                         echo "<td>";
-                                            echo '<a href="editTenants.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                            echo '<a href="tenantUtils.php?tenant_id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                             echo '<a href="editTenants.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
                                             echo '<a href="deleteTenants.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";

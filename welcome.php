@@ -37,7 +37,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       <ul class="nav nav-pills flex-column mb-auto">
         <li>
           <a class="nav-link link-dark">Utilities</a>
-          <a class="nav-link link-dark">Tenants</a>
+          <a class="nav-link link-dark" href="tenant.php">Tenants</a>
         </li>
         <li>
       </ul>

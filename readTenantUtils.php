@@ -23,7 +23,7 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
                     echo "<thead>";
                         echo "<tr>";
                             echo "<th>#</th>";
-                            echo "<th>id</th>";
+                
                             echo "<th>Water</th>";
                             echo "<th>Electricity</th>";
                             echo "<th>Internet</th>";
@@ -43,11 +43,11 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
                 echo "<td>" . $breakage = $row["breakage"] . "</td>";
                 echo "<td>" . $security = $row["security"] . "</td>";
                 echo "<td>" . $ammenity = $row["ammenity"] . "</td>";
-                echo "<td>";
-                    echo '<a href="updateUtil.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                    echo '<a href="updateUtil.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                    echo '<a href="deleteUtil.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
-                echo "</td>";
+                // echo "<td>";
+                //     echo '<a href="updateUtil.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                //     echo '<a href="updateUtil.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                //     echo '<a href="deleteUtil.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                // echo "</td>";
                 echo "</tr>";
             }
             echo "</tbody>";                            
@@ -69,4 +69,4 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
     header("location: error.php");
     exit();
 }
-?>
+}
