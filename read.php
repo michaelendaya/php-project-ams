@@ -57,7 +57,9 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
                 ?>
                 </h1>
                 <div class="createbtnContainer">
-                 <a href="addUtils.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Utility</a>
+                    <?php       
+                    echo '<a href="addUtils.php?tenant_id='. $id .'"  class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Utility</a>';          
+                    ?>
                   
                 </div>
                     <!-- <div class="form-group">

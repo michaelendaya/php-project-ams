@@ -12,12 +12,14 @@ $tenant_id_err = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate tenant_id
-    $input_tenant_id = trim($_POST["tenant_id"]);
-    if (empty($input_tenant_id)) {
-        $tenant_id_err = "Please enter the contact number.";
-    } else {
-        $tenant_id = $input_tenant_id;
-    }
+    $tenant_id = isset($_GET['tenant_id']) ? $_GET['tenant_id'] : '';
+
+    // $input_tenant_id =  trim($_POST["tenant_id"]);
+    // if (empty($input_tenant_id)) {
+    //     $tenant_id_err = "Please enter the contact number.";
+    // } else {
+    //     $tenant_id = $input_tenant_id;
+    // }
 
 
     // Check input errors before inserting in database
@@ -29,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param("idddddd",$param_tenant_id , $param_water, $param_electricity, $param_internet, $param_breakage, $param_security, $param_ammenity);
+            $stmt->bind_param("idddddd", $param_tenant_id, $param_water, $param_electricity, $param_internet, $param_breakage, $param_security, $param_ammenity);
 
             // Set parameters
             $param_tenant_id = $tenant_id;
@@ -81,11 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h2 class="mt-5">Add Utility</h2>
                     <p>Please fill this form and submit to add Utility record of the specified tenant to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                         <div class="form-group">
-                            <label>Contact Number</label>
-                            <input type="number" name="tenant_id" class="form-control <?php echo (!empty($tenant_id_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $tenant_id; ?>">
-                            <span class="invalid-feedback"><?php echo $tenant_id_err; ?></span>
-                        </div>
+                 
                         <div class="form-group">
                             <label>Water</label>
                             <input type="number" name="water" class="form-control" step="any" ?>
@@ -94,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label>Electricity</label>
                             <input type="number" name="electricity" class="form-control" step="any" ">
                         </div>
-                        <div class="form-group">
+                        <div class=" form-group">
                             <label>Internet</label>
                             <input type="number" name="internet" class="form-control" step="any">
                         </div>
@@ -110,13 +108,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label>Ammenity</label>
                             <input type="number" name="ammenity" class="form-control" step="any">
                         </div>
-                       
-                      
+
+
 
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a href="tenant.php" class="btn btn-secondary ml-2">Cancel</a>
-                      
-                       
+
+
                     </form>
                 </div>
             </div>
