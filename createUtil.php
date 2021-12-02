@@ -7,6 +7,9 @@ $water = $electricity = $internet = $breakage = $security =  $ammenity = 0;
 $tenant_id = "";
 $tenant_id_err = "";
 
+if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
+    $tenant_id =  isset($_GET['tenant_id']) ? $_GET['tenant_id'] : '';
+}
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -112,8 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="tenant.php" class="btn btn-secondary ml-2">Cancel</a>
-
+                      
+                        <?php 
+                            echo '<a href="tenantUtils.php?tenant_id=' . $tenant_id. '" class="btn btn-secondary ml-2">Cancel</a>'
+                            ?>
 
                     </form>
                 </div>

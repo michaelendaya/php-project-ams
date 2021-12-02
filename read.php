@@ -5,7 +5,7 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
     // Include config file
     require_once "config.php";
     $id =  isset($_GET['tenant_id']) ? $_GET['tenant_id'] : '';
-
+    $tenant_id =   isset($_GET['tenant_id']) ? $_GET['tenant_id'] : '';
     // Prepare a select statement
     $sql = "SELECT * FROM tenants WHERE id = $id";
 
@@ -28,6 +28,7 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
     <meta charset="UTF-8">
     <title>View Record</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .wrapper{
             width: 100%;
@@ -110,6 +111,7 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
                                     echo "<th>Breakage</th>";
                                     echo "<th>Security</th>";
                                     echo "<th>Ammenity</th>";
+                                    echo "<th>Action</th>";
                                     echo "</tr>";
                                     echo "</thead>";
                                     echo "<tbody>";
@@ -123,6 +125,11 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
                                         echo "<td>" . $breakage = $row["breakage"] . "</td>";
                                         echo "<td>" . $security = $row["security"] . "</td>";
                                         echo "<td>" . $ammenity = $row["ammenity"] . "</td>";
+                                        echo "<td>";
+                                            echo '<a href="tenantUtils.php?tenant_id='. $row['id'] .'" class="mr-3" title="View Utility" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                            echo '<a href="editUtil.php?id='. $row['id'] .'&tenant_id=' . $tenant_id . ' " class="mr-3" title="Update Utility" data-toggle="tooltip"><span class="fa  fa-pencil"></span></a>';
+                                            echo '<a href="deleteUtils.php?id='. $row['id'] . '&tenant_id=' . $tenant_id .'" title="Delete Utility" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                        echo "</td>";
                                         // echo "<td>";
                                         //     echo '<a href="updateUtil.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                         //     echo '<a href="updateUtil.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
@@ -135,7 +142,7 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
                                     // Free result set
                                     $result->free();
                                 } else {
-                                    echo "Oops! Something went wrong. Please try again later.";
+                                    echo "No utility found on this user";
                                 }
                             }
 
