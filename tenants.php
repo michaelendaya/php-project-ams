@@ -56,6 +56,7 @@
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
+                                
                                 while($row = $result->fetch_array()){
                                     echo "<tr>";
                                         echo "<td>" . $row['id'] . "</td>";

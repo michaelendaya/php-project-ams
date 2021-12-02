@@ -36,6 +36,11 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
         table tr td:last-child{
             width: 120px;
         }
+        .createbtnContainer{
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -51,6 +56,10 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
                 echo    $name;
                 ?>
                 </h1>
+                <div class="createbtnContainer">
+                 <a href="addUtils.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Utility</a>
+                  
+                </div>
                     <!-- <div class="form-group">
                         <label>Name</label>
                         <p><b><?php echo $row["name"]; ?></b></p>
