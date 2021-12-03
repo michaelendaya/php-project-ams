@@ -126,7 +126,7 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
                                         echo "<td>" . $security = $row["security"] . "</td>";
                                         echo "<td>" . $ammenity = $row["ammenity"] . "</td>";
                                         echo "<td>";
-                                            echo '<a href="tenantUtils.php?tenant_id='. $row['id'] .'" class="mr-3" title="View Utility" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                            echo '<a href="viewSpecificUtil.php?id='. $row['id'] .'&tenant_id=' . $tenant_id . ' " class="mr-3" title="View Utility" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                             echo '<a href="editUtil.php?id='. $row['id'] .'&tenant_id=' . $tenant_id . ' " class="mr-3" title="Update Utility" data-toggle="tooltip"><span class="fa  fa-pencil"></span></a>';
                                             echo '<a href="deleteUtils.php?id='. $row['id'] . '&tenant_id=' . $tenant_id .'" title="Delete Utility" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";
