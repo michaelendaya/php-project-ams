@@ -42,6 +42,9 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
             justify-content: flex-end;
             margin-bottom: 20px;
         }
+        td {
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -118,13 +121,13 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
                                     while ($row = $result->fetch_array()) {
                                         echo "<tr>";
                                         // Retrieve individual field value
-                                        echo "<td>" . $id = $row["id"] . "</td>";
-                                        echo "<td>" . $water = $row["water"] . "</td>";
-                                        echo "<td>" . $electricity = $row["electricity"] . "</td>";
-                                        echo "<td>" . $internet = $row["internet"] . "</td>";
-                                        echo "<td>" . $breakage = $row["breakage"] . "</td>";
-                                        echo "<td>" . $security = $row["security"] . "</td>";
-                                        echo "<td>" . $ammenity = $row["ammenity"] . "</td>";
+                                        echo "<td style='text-align: center'> " . $id = $row["id"] . "</td>";
+                                        echo "<td>&#8369; " . $water = $row["water"] . "</td>";
+                                        echo "<td> &#8369; " . $electricity = $row["electricity"] . "</td>";
+                                        echo "<td>&#8369; " . $internet = $row["internet"] . "</td>";
+                                        echo "<td> &#8369; " . $breakage = $row["breakage"] . "</td>";
+                                        echo "<td> &#8369; " . $security = $row["security"] . "</td>";
+                                        echo "<td> &#8369; " . $ammenity = $row["ammenity"] . "</td>";
                                         echo "<td>";
                                             echo '<a href="viewSpecificUtil.php?id='. $row['id'] .'&tenant_id=' . $tenant_id . ' " class="mr-3" title="View Utility" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                             echo '<a href="editUtil.php?id='. $row['id'] .'&tenant_id=' . $tenant_id . ' " class="mr-3" title="Update Utility" data-toggle="tooltip"><span class="fa  fa-pencil"></span></a>';

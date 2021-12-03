@@ -85,27 +85,32 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                         ?> </h1>
                     <div class="form-group">
                         <label>Water</label>
-                        <p><b><?php echo $row["water"]; ?></b></p>
+                        <p><b>&#8369;<?php echo $row["water"]; ?></b></p>
                     </div>
                     <div class="form-group">
                         <label>Electricity</label>
-                        <p><b><?php echo $row["electricity"]; ?></b></p>
+                        <p><b>&#8369;<?php echo $row["electricity"]; ?></b></p>
                     </div>
                     <div class="form-group">
                         <label>Internet</label>
-                        <p><b><?php echo $row["internet"]; ?></b></p>
+                        <p><b>&#8369;<?php echo $row["internet"]; ?></b></p>
                     </div>
                     <div class="form-group">
                         <label>Breakage</label>
-                        <p><b><?php echo $row["breakage"]; ?></b></p>
+                        <p><b>&#8369;<?php echo $row["breakage"]; ?></b></p>
                     </div>
                     <div class="form-group">
                         <label>Security</label>
-                        <p><b><?php echo $row["security"]; ?></b></p>
+                        <p><b>&#8369;<?php echo $row["security"]; ?></b></p>
                     </div>
                     <div class="form-group">
                         <label>Ammenity</label>
-                        <p><b><?php echo $row["ammenity"]; ?></b></p>
+                        <p><b>&#8369;<?php echo $row["ammenity"]; ?></b></p>
+                    </div>
+                    <hr/>
+                    <div class="form-group">
+                        <label>Total Bills</label>
+                        <p><b>&#8369;<?php echo $row["water"] + $row["electricity"] + $row["internet"] + $row["breakage"] + $row["security"]+ $row["ammenity"]; ?></b></p>
                     </div>
                    
                     <?php 
