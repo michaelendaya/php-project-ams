@@ -8,13 +8,15 @@ $water_err = $electricity_err = $internet_err = $breakage_err = $security_err = 
 $tenant_id = "";
 $tenant_id_err = "";
 
-if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
-    $tenant_id =  isset($_GET['tenant_id']) ? $_GET['tenant_id'] : '';
+if (isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))) {
+    $tenant_id =  isset($_GET['tenant_id']);
+    $id = intval($_GET['tenant_id']);
 }
 
+$tenant_id = 2;
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    $id = $_POST["id"];
     // Validate tenant_id
     $tenant_id = isset($_GET['tenant_id']) ? $_GET['tenant_id'] : '';
 
@@ -27,45 +29,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_water = trim($_POST["water"]);
     if (empty($input_water)) {
         $water_err = "Please enter a value.";
-    }  else {
+    } else {
         $water = $input_water;
     }
-    
+
     $input_electricity = trim($_POST["electricity"]);
     if (empty($input_electricity)) {
         $electricity_err = "Please enter a value.";
-    }  else {
+    } else {
         $electricity = $input_electricity;
     }
-    
+
     $input_internet = trim($_POST["internet"]);
     if (empty($input_internet)) {
         $internet_err = "Please enter a value.";
-    }  else {
+    } else {
         $internet = $input_internet;
     }
-    
+
     $input_breakage = trim($_POST["breakage"]);
     if (empty($input_breakage)) {
         $breakage_err = "Please enter a value.";
-    }  else {
+    } else {
         $breakage = $input_breakage;
     }
-    
+
     $input_security = trim($_POST["security"]);
     if (empty($input_security)) {
         $security_err = "Please enter a value.";
-    }  else {
+    } else {
         $security = $input_security;
     }
-    
+
     $input_ammenity = trim($_POST["ammenity"]);
     if (empty($input_ammenity)) {
         $ammenity_err = "Please enter a value.";
-    }  else {
+    } else {
         $ammenity = $input_ammenity;
     }
-    
+
 
     // Check input errors before inserting in database
     if (
@@ -81,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bind_param("idddddd", $param_tenant_id, $param_water, $param_electricity, $param_internet, $param_breakage, $param_security, $param_ammenity);
 
             // Set parameters
-            $param_tenant_id = $tenant_id;
+            $param_tenant_id =$id;
             $param_water = $water;
             $param_electricity = $electricity;
             $param_internet = $internet;
@@ -92,7 +94,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Records created successfully. Redirect to landing page
-               //CHANGE THIS ========================================================================
+                //CHANGE THIS ========================================================================
+
+                header("Location: tenantUtils.php?tenant_id=$id");
                 exit();
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
@@ -130,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h2 class="mt-5">Add Utility</h2>
                     <p>Please fill this form and submit to add Utility record of the specified tenant to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                 
+
                         <div class="form-group">
                             <label>Water</label>
                             <input type="number" name="water" class="form-control <?php echo (!empty($water_err)) ? 'is-invalid' : ''; ?>" step="any" ?>
@@ -139,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="form-group">
                             <label>Electricity</label>
                             <input type="number" name="electricity" class="form-control <?php echo (!empty($electricity_err)) ? 'is-invalid' : ''; ?>" step="any" ">
-                            <span class="invalid-feedback"><?php echo $electricity_err; ?></span>
+                            <span class=" invalid-feedback"><?php echo $electricity_err; ?></span>
                         </div>
                         <div class=" form-group">
                             <label>Internet</label>
@@ -162,15 +166,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <span class="invalid-feedback"><?php echo $ammenity_err; ?></span>
                         </div>
 
+                        <input type="hidden" name="id" value="<?php echo $tenant_id; ?>" />
 
 
                         <input type="submit" class="btn btn-primary" value="Submit">
-                      
-                        <?php 
-                            echo '<a href="tenantUtils.php?tenant_id=' . $tenant_id. '" class="btn btn-secondary ml-2">Cancel</a>';
-                        
-                            ?>
-                         
+
+                        <?php
+                        echo '<a href="tenantUtils.php?tenant_id=' . $tenant_id . '" class="btn btn-secondary ml-2">Cancel</a>';
+
+                        ?>
+
 
                     </form>
                 </div>
