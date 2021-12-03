@@ -4,6 +4,7 @@ require_once "config.php";
 
 // Define variables and initialize with empty values
 $water = $electricity = $internet = $breakage = $security =  $ammenity = 0;
+$water_err = $electricity_err = $internet_err = $breakage_err = $security_err = $ammenity_err = '';
 $tenant_id = "";
 $tenant_id_err = "";
 
@@ -23,11 +24,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // } else {
     //     $tenant_id = $input_tenant_id;
     // }
-
+    $input_water = trim($_POST["water"]);
+    if (empty($input_water)) {
+        $water_err = "Please enter a value.";
+    }  else {
+        $water = $input_water;
+    }
+    
+    $input_electricity = trim($_POST["electricity"]);
+    if (empty($input_electricity)) {
+        $electricity_err = "Please enter a value.";
+    }  else {
+        $electricity = $input_electricity;
+    }
+    
+    $input_internet = trim($_POST["internet"]);
+    if (empty($input_internet)) {
+        $internet_err = "Please enter a value.";
+    }  else {
+        $internet = $input_internet;
+    }
+    
+    $input_breakage = trim($_POST["breakage"]);
+    if (empty($input_breakage)) {
+        $breakage_err = "Please enter a value.";
+    }  else {
+        $breakage = $input_breakage;
+    }
+    
+    $input_security = trim($_POST["security"]);
+    if (empty($input_security)) {
+        $security_err = "Please enter a value.";
+    }  else {
+        $security = $input_security;
+    }
+    
+    $input_ammenity = trim($_POST["ammenity"]);
+    if (empty($input_ammenity)) {
+        $ammenity_err = "Please enter a value.";
+    }  else {
+        $ammenity = $input_ammenity;
+    }
+    
 
     // Check input errors before inserting in database
     if (
-        empty($tenant_id_err)
+        empty($water_err) && empty($electricity_err) && empty($internet_err) &&
+        empty($breakage_err) && empty($security_err)
+        && empty($ammenity_err)
     ) {
         // Prepare an insert statement
         $sql = "INSERT INTO utils (tenant_id,water,electricity,internet,breakage,security,ammenity) VALUES (?, ?, ?,?,?,?,?)";
@@ -48,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Records created successfully. Redirect to landing page
-                header("location: tenant.php"); //CHANGE THIS ========================================================================
+               //CHANGE THIS ========================================================================
                 exit();
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
@@ -89,27 +133,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                  
                         <div class="form-group">
                             <label>Water</label>
-                            <input type="number" name="water" class="form-control" step="any" ?>
+                            <input type="number" name="water" class="form-control <?php echo (!empty($water_err)) ? 'is-invalid' : ''; ?>" step="any" ?>
+                            <span class="invalid-feedback"><?php echo $water_err; ?></span>
                         </div>
                         <div class="form-group">
                             <label>Electricity</label>
-                            <input type="number" name="electricity" class="form-control" step="any" ">
+                            <input type="number" name="electricity" class="form-control <?php echo (!empty($electricity_err)) ? 'is-invalid' : ''; ?>" step="any" ">
+                            <span class="invalid-feedback"><?php echo $electricity_err; ?></span>
                         </div>
                         <div class=" form-group">
                             <label>Internet</label>
-                            <input type="number" name="internet" class="form-control" step="any">
+                            <input type="number" name="internet" class="form-control <?php echo (!empty($internet_err)) ? 'is-invalid' : ''; ?>" step="any">
+                            <span class="invalid-feedback"><?php echo $internet_err; ?></span>
                         </div>
                         <div class="form-group">
                             <label>Breakage</label>
-                            <input type="number" name="breakage" class="form-control" step="any">
+                            <input type="number" name="breakage" class="form-control <?php echo (!empty($breakage_err)) ? 'is-invalid' : ''; ?>" step="any">
+                            <span class="invalid-feedback"><?php echo $breakage_err; ?></span>
                         </div>
                         <div class="form-group">
                             <label>Security</label>
-                            <input type="number" name="security" class="form-control" step="any">
+                            <input type="number" name="security" class="form-control <?php echo (!empty($security_err)) ? 'is-invalid' : ''; ?>" step="any">
+                            <span class="invalid-feedback"><?php echo $security_err; ?></span>
                         </div>
                         <div class="form-group">
                             <label>Ammenity</label>
-                            <input type="number" name="ammenity" class="form-control" step="any">
+                            <input type="number" name="ammenity" class="form-control <?php echo (!empty($ammenity_err)) ? 'is-invalid' : ''; ?>" step="any">
+                            <span class="invalid-feedback"><?php echo $ammenity_err; ?></span>
                         </div>
 
 
@@ -117,8 +167,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="submit" class="btn btn-primary" value="Submit">
                       
                         <?php 
-                            echo '<a href="tenantUtils.php?tenant_id=' . $tenant_id. '" class="btn btn-secondary ml-2">Cancel</a>'
+                            echo '<a href="tenantUtils.php?tenant_id=' . $tenant_id. '" class="btn btn-secondary ml-2">Cancel</a>';
+                        
                             ?>
+                         
 
                     </form>
                 </div>
