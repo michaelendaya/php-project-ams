@@ -8,7 +8,7 @@ if(isset($_GET["tenant_id"]) && !empty(trim($_GET["tenant_id"]))){
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
     // Include config file
     require_once "config.php";
-
+    $tenant_id = $_POST["tenant_id"];
     // Prepare a delete statement
     $sql = "DELETE FROM utils WHERE id = ?";
 
@@ -22,7 +22,8 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
         // Attempt to execute the prepared statement
         if ($stmt->execute()) {
             // Records deleted successfully. Redirect to landing page
-            header("location: tenantUtils.php?tenant_id=" . $tenant_id);
+            header("location: tenantUtils.php?tenant_id=$tenant_id");
+           
             exit();
         } else {
             echo "Oops! Something went wrong. Please try again later.";
@@ -71,7 +72,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                             <p>Are you sure you want to delete this tenant utility record?</p>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
-                               
+                                <input type="hidden" name="tenant_id" value="<?php echo $tenant_id; ?>" />
                                 <?php 
                             echo '<a href="tenantUtils.php?tenant_id=' . $tenant_id. '" class="btn btn-secondary ml-2">No</a>'
                             ?>
