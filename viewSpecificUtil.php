@@ -36,6 +36,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <li>
                     <a class="nav-link link-dark">Utilities</a>
                     <a class="nav-link link-dark">Tenants</a>
+                    <a class="nav-link link-dark" href="aboutUs.php" style="text-align: center;">About Us</a>
                 </li>
                 <li>
             </ul>
